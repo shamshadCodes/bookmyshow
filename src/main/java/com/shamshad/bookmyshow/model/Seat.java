@@ -1,4 +1,4 @@
 package com.shamshad.bookmyshow.model;
 
-public class Seat {
+public class Seat extends BaseClass{
 }

@@ -1,4 +1,4 @@
 package com.shamshad.bookmyshow.model;
 
-public class Ticket {
+public class Ticket extends BaseClass{
 }
