@@ -1,6 +1,5 @@
 package com.shamshad.bookmyshow.model;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
