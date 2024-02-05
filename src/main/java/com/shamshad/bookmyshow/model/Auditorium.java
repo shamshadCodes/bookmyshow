@@ -10,5 +10,5 @@ import java.util.List;
 public class Auditorium extends BaseClass{
     private String name;
     private List<List<Seat>> seats;
-    private List<Feature> features;
+    private List<MoviePrint> moviePrints;
 }

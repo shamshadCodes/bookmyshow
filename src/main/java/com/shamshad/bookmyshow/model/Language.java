@@ -3,7 +3,7 @@ package com.shamshad.bookmyshow.model;
 public enum Language {
     HINDI,
     ENGLISH,
-    FREMCH,
+    FRENCH,
     SPANISH,
     TELUGU,
     PUNJABI,
