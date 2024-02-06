@@ -1,4 +1,4 @@
-package com.shamshad.bookmyshow.model;
+package com.shamshad.bookmyshow.models;
 
 import jakarta.persistence.Entity;
 import lombok.Getter;

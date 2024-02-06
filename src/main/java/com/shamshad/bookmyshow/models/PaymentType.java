@@ -1,4 +1,4 @@
-package com.shamshad.bookmyshow.model;
+package com.shamshad.bookmyshow.models;
 
 public enum PaymentType {
     CASH,

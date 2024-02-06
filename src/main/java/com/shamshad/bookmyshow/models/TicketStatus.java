@@ -1,4 +1,4 @@
-package com.shamshad.bookmyshow.model;
+package com.shamshad.bookmyshow.models;
 
 public enum TicketStatus {
     BOOKED,
@@ -6,3 +6,4 @@ public enum TicketStatus {
     FAILED,
     PROCESSING,
 }
+

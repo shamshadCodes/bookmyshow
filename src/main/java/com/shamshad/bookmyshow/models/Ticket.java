@@ -1,4 +1,4 @@
-package com.shamshad.bookmyshow.model;
+package com.shamshad.bookmyshow.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Ticket extends BaseClass{
-//    private int price; //TODO Check if we need price here
+    private int ticketPrice;
     private Date bookingTime;
 
     @Enumerated(EnumType.STRING)

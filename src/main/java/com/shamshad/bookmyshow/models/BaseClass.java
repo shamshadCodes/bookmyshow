@@ -1,4 +1,4 @@
-package com.shamshad.bookmyshow.model;
+package com.shamshad.bookmyshow.models;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
