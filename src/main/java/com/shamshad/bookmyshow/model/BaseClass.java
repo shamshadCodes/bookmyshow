@@ -14,5 +14,5 @@ public class BaseClass {
     @Id
     private long id; //TODO: change this to UUID later
     private Date createdAt;
-    private Date modifiedAt;
+    private Date lastModifiedAt;
 }

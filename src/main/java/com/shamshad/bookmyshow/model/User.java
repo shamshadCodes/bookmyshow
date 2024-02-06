@@ -14,4 +14,5 @@ public class User extends BaseClass{
     private String password;
     private String email;
     private Date dateOfBirth;
+    private String phoneNumber;
 }

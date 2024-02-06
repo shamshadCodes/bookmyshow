@@ -11,9 +11,11 @@ import java.util.List;
 @Setter
 public class Auditorium extends BaseClass{
     private String name;
-    @OneToMany
-    private List<Seat> seats;
+
     @Enumerated(EnumType.STRING)
     @ElementCollection
     private List<SupportedMoviePrints> moviePrints;
+
+    @OneToMany
+    private List<Seat> seats;
 }

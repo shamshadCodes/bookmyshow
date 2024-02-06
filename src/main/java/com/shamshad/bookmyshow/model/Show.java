@@ -10,14 +10,16 @@ import java.util.Date;
 @Getter
 @Setter
 public class Show extends BaseClass{
-    @ManyToOne
-    private Movie movie;
-    @ManyToOne
-    private Auditorium auditorium;
     private Date startTime;
     private Date endTime;
+
     @Enumerated(EnumType.STRING)
     private Language language;
     @Enumerated(EnumType.STRING)
     private SupportedMoviePrints moviePrint;
+
+    @ManyToOne
+    private Movie movie;
+    @ManyToOne
+    private Auditorium auditorium;
 }

@@ -13,6 +13,7 @@ import java.util.List;
 public class Movie extends BaseClass{
     private String name;
     private Date releaseDate;
+
     @Enumerated(EnumType.STRING)
     @ElementCollection
     private List<Language> languages;

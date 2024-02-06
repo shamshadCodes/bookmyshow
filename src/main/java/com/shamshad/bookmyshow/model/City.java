@@ -12,7 +12,8 @@ import java.util.List;
 @Setter
 public class City extends BaseClass{
     private String name;
+    private String state;
+
     @OneToMany
     private List<Theatre> theatres;
-    private String state;
 }

@@ -9,9 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ShowSeatType extends BaseClass{
+    private int price;
+
     @ManyToOne
     private Show show;
     @ManyToOne
     private SeatType seatType;
-    private int price;
 }
