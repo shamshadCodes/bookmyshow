@@ -1,6 +1,5 @@
 package com.shamshad.bookmyshow.dtos;
 
-import com.shamshad.bookmyshow.models.TicketStatus;
 import lombok.Getter;
 import lombok.Setter;
 
