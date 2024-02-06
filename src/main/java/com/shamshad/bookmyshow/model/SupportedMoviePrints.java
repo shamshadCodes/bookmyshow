@@ -1,6 +1,6 @@
 package com.shamshad.bookmyshow.model;
 
-public enum MoviePrint {
+public enum SupportedMoviePrints {
     TWO_DIMENSION,
     THREE_DIMENSION,
     IMAX,

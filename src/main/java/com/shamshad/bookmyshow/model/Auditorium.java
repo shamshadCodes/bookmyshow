@@ -1,6 +1,6 @@
 package com.shamshad.bookmyshow.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +11,9 @@ import java.util.List;
 @Setter
 public class Auditorium extends BaseClass{
     private String name;
-    private List<List<Seat>> seats;
-    private List<MoviePrint> moviePrints;
+    @OneToMany
+    private List<Seat> seats;
+    @Enumerated(EnumType.STRING)
+    @ElementCollection
+    private List<SupportedMoviePrints> moviePrints;
 }

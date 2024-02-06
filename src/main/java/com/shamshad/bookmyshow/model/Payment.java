@@ -1,6 +1,8 @@
 package com.shamshad.bookmyshow.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +11,9 @@ import lombok.Setter;
 @Setter
 public class Payment extends BaseClass{
     private String referenceId;
+    @Enumerated(EnumType.STRING)
     private PaymentGateway paymentGateway;
     private int amount;
+    @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 }

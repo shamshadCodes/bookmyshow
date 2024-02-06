@@ -1,6 +1,6 @@
 package com.shamshad.bookmyshow.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +11,11 @@ import java.util.List;
 @Getter
 @Setter
 public class Ticket extends BaseClass{
+    @ManyToOne
     private Show show;
     private Date bookingTime;
+    @OneToMany
     private List<Payment> payments;
+    @Enumerated(EnumType.STRING)
+    private TicketStatus ticketStatus;
 }

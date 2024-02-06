@@ -1,6 +1,6 @@
 package com.shamshad.bookmyshow.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,10 +10,14 @@ import java.util.Date;
 @Getter
 @Setter
 public class Show extends BaseClass{
+    @ManyToOne
     private Movie movie;
+    @ManyToOne
     private Auditorium auditorium;
     private Date startTime;
     private Date endTime;
+    @Enumerated(EnumType.STRING)
     private Language language;
-    private MoviePrint moviePrint;
+    @Enumerated(EnumType.STRING)
+    private SupportedMoviePrints moviePrint;
 }
