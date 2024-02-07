@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class MakePaymentRequestDTO {
+public class BookTicketRequestDTO {
     private Long showId;
     private Long userId;
     private List<Long> seats;

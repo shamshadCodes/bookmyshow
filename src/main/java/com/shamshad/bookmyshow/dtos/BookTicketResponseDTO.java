@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class MakePaymentResponseDTO {
+public class BookTicketResponseDTO {
     private int ticketPrice;
     private String theatreName;
     private String auditoriumName;

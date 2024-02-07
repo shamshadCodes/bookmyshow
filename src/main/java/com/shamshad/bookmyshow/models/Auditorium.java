@@ -18,4 +18,6 @@ public class Auditorium extends BaseClass{
 
     @OneToMany
     private List<Seat> seats;
+    @ManyToOne
+    private Theatre theatre;
 }
