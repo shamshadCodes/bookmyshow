@@ -4,12 +4,15 @@ import com.shamshad.bookmyshow.exceptions.InvalidArgumentsException;
 import com.shamshad.bookmyshow.exceptions.SeatNotAvailableException;
 import com.shamshad.bookmyshow.models.*;
 import com.shamshad.bookmyshow.repositories.*;
-import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
+import java.util.concurrent.TimeoutException;
 
 @Service
 public class TicketService {
@@ -20,6 +23,7 @@ public class TicketService {
     private final UserRepository userRepository;
     private final TicketRepository ticketRepository;
 
+    @Autowired
     public TicketService(ShowRepository showRepository,
                          SeatRepository seatRepository,
                          ShowSeatRepository showSeatRepository,
@@ -33,7 +37,7 @@ public class TicketService {
     }
 
 
-    public Ticket bookTicket(Long showId, Long userId, List<Long> seatIds) throws InvalidArgumentsException, SeatNotAvailableException {
+    public Ticket bookTicket(Long showId, Long userId, List<Long> seatIds) throws TimeoutException, InvalidArgumentsException, SeatNotAvailableException {
         Optional<Show> optionalShow = showRepository.findById(showId);
         if(optionalShow.isEmpty()){
             throw new InvalidArgumentsException("Show Id: " + showId + " doesn't exist.");
@@ -51,7 +55,7 @@ public class TicketService {
         List<Seat> seats = seatRepository.findAllByIdIn(seatIds);
 
         // TODO: Ensure that showSeats are created when a new show is added to the DB
-        List<ShowSeat> savedShowSeats = lockShowSeats(seats, show);
+        List<ShowSeat> savedShowSeats = reserveShowSeats(seats, show);
 
         Ticket ticket = new Ticket();
         ticket.setBookedBy(user);
@@ -59,15 +63,14 @@ public class TicketService {
         ticket.setShow(show);
         ticket.setShowSeats(savedShowSeats);
         ticket.setBookingTime(new Date());
-//        ticket.setPayments(List.of());
 //        ticket.setTicketPrice();
 
         Ticket savedTicket = ticketRepository.save(ticket);
         return savedTicket;
     }
 
-    @Transactional // To avoid race conditions
-    protected List<ShowSeat> lockShowSeats(List<Seat> seats, Show show) throws SeatNotAvailableException {
+    @Transactional(isolation = Isolation.SERIALIZABLE, timeout = 5) // To avoid race conditions
+    public List<ShowSeat> reserveShowSeats(List<Seat> seats, Show show) throws SeatNotAvailableException {
         List<ShowSeat> showSeats = showSeatRepository.findAllBySeatInAndShow(seats, show);
 
         // Creating an Instant threshold that is 15 minutes from the current time

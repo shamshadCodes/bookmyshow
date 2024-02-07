@@ -15,8 +15,6 @@ public class Theatre extends BaseClass{
     private String name;
     private String address;
 
-    @OneToMany
-    private List<Auditorium> auditoriums;
     @ManyToOne
     private City city;
 }
