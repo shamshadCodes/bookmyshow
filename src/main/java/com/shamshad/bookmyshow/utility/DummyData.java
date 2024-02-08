@@ -35,6 +35,8 @@ public class DummyData {
 
     public void addDummyData() {
         System.out.println("Adding Dummy data for required classes");
+
+        // Adding Seat Types
         SeatType goldSeatType = new SeatType();
         goldSeatType.setName("Gold");
 
@@ -44,6 +46,7 @@ public class DummyData {
         SeatType platinumSeatType = new SeatType();
         platinumSeatType.setName("Platinum");
 
+        //Adding Seats
         List<Seat> seats = List.of(
                 new Seat(),
                 new Seat(),
@@ -57,6 +60,7 @@ public class DummyData {
                 new Seat()
         );
 
+        //Adding Cities
         City city1 = new City();
         city1.setName("Bangalore");
         city1.setState("Karnataka");
@@ -73,35 +77,50 @@ public class DummyData {
         city4.setName("Chennai");
         city4.setState("Tamil Nadu");
 
+        //Adding Theatre
         Theatre theatre1 = new Theatre();
         theatre1.setName("PVR Cinemas");
         theatre1.setCity(city1);
 
+        //Adding Auditoriums
         Auditorium auditorium1 = new Auditorium();
         auditorium1.setName("Auditorium 1");
         auditorium1.setTheatre(theatre1);
         auditorium1.setSeats(seats);
 
-//        city1.setTheatres(List.of(theatre1));
-
-//        Seat seat1 = new Seat();
-//        seat1.setSeatNumber("A1");
-//        seat1.setRow(1);
-//        seat1.setCol(1);
-//        seat1.setSeatType(goldSeatType);
+        Auditorium auditorium2 = new Auditorium();
+        auditorium2.setName("Auditorium 2");
+        auditorium2.setTheatre(theatre1);
+//        auditorium2.setSeats(seats);
 
         Show show1 = new Show();
         show1.setShowName("Show 1");
         show1.setAuditorium(auditorium1);
 
+        Show show2 = new Show();
+        show2.setShowName("Show 2");
+        show2.setAuditorium(auditorium2);
+
+        //Adding Seat details and initializing showSeats
         List<ShowSeat> showSeats = new ArrayList<>();
+        int count = 0;
+        String seatRow = "A";
 
         for(Seat seat: seats){
             ShowSeat showSeat = new ShowSeat();
             seat.setSeatType(goldSeatType);
+            seat.setSeatNumber(seatRow + (++count));
+
             showSeat.setSeat(seat);
             showSeat.setShow(show1);
+            showSeat.setShowSeatStatus(ShowSeatStatus.AVAILABLE);
+
             showSeats.add(showSeat);
+
+            if(count == 10){
+                count = 0;
+                seatRow = String.valueOf((char)(seatRow.charAt(0) + 1));
+            }
         }
 
         User user1 = new User();
@@ -111,10 +130,9 @@ public class DummyData {
         seatRepository.saveAll(seats);
         cityRepository.saveAll(List.of(city1, city2, city3, city4));
         theatreRepository.save(theatre1);
-        auditoriumRepository.save(auditorium1);
-        showRepository.save(show1);
+        auditoriumRepository.saveAll(List.of(auditorium1, auditorium2));
+        showRepository.saveAll(List.of(show1, show2));
         showSeatRepository.saveAll(showSeats);
         userRepository.save(user1);
-
     }
 }
