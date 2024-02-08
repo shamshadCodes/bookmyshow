@@ -17,7 +17,7 @@ public class TicketMapper {
 
         List<String> seats = new ArrayList<>();
         for(ShowSeat showSeat: ticket.getShowSeats()){
-            seats.add(showSeat.getSeat().getName());
+            seats.add(showSeat.getSeat().getSeatNumber());
         }
         responseDTO.setSeats(seats);
 

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Seat extends BaseClass{
-    private String name;
+    private String seatNumber;
     private int row;
     private int col;
     @ManyToOne

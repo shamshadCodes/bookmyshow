@@ -12,6 +12,7 @@ import java.util.Date;
 public class Show extends BaseClass{
     private Date startTime;
     private Date endTime;
+    private String showName;
 
     @Enumerated(EnumType.STRING)
     private Language language;

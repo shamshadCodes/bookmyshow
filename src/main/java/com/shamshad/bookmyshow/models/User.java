@@ -6,11 +6,11 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@Entity
+@Entity (name = "users")
 @Getter
 @Setter
 public class User extends BaseClass{
-    private String name;
+    private String userName;
     private String password;
     private String email;
     private Date dateOfBirth;
